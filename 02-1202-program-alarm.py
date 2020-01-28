@@ -1,17 +1,17 @@
-
-filepath='input/02.txt'
+filepath = "input/02.txt"
 with open(filepath) as fp:
     line = fp.readline()
-    program = [int(x) for x in line.split(',')]
+    program = [int(x) for x in line.split(",")]
 
-def step(program,position):
+
+def step(program, position):
     opcode = program[position]
-    first = program[position+1]
-    second = program[position+2]
-    third = program[position+3]
+    first = program[position + 1]
+    second = program[position + 2]
+    third = program[position + 3]
 
     length = len(program)
-    
+
     if opcode == 1:
         if first >= length or second >= length or third >= length:
             return -1
@@ -23,6 +23,7 @@ def step(program,position):
 
     return opcode
 
+
 def execute(program):
     position = 0
     returncode = 1
@@ -31,12 +32,14 @@ def execute(program):
         position = position + 4
     return returncode
 
+
 program_copy = program.copy()
 
 program[1] = 12
 program[2] = 2
 returncode = execute(program)
-print('Part One:',program[0])
+print("Part One:", program[0])
+
 
 def find_noun_verb(program_copy):
     length = len(program_copy)
@@ -47,6 +50,7 @@ def find_noun_verb(program_copy):
             program[2] = verb
             returncode = execute(program)
             if program[0] == 19690720 and returncode == 99:
-                return 100*noun + verb
+                return 100 * noun + verb
 
-print('Part Two:',find_noun_verb(program_copy))
+
+print("Part Two:", find_noun_verb(program_copy))
