@@ -1,7 +1,7 @@
 import numpy as np
 from collections import defaultdict
 
-filepath = "input/temp.txt"
+filepath = "input/09.txt"
 with open(filepath) as fp:
     line = fp.readline()
     input_program = [int(x) for x in line.split(",")]
@@ -108,7 +108,7 @@ def execute(program, input, position=0, relative_base=0):
         if modify != position:
             position += instruction_length
 
-        if opcode in 99:
+        if opcode in [99]:
             break
     return output
 
@@ -116,3 +116,12 @@ def execute(program, input, position=0, relative_base=0):
 program = defaultdict(int)
 for (i, j) in enumerate(input_program):
     program[i] = j
+
+output = execute(program, [1])
+print("Part One:", output[0])
+
+program_2 = defaultdict(int)
+for (i, j) in enumerate(input_program):
+    program_2[i] = j
+output = execute(program_2, [2])
+print("Part Two:", output[0])
